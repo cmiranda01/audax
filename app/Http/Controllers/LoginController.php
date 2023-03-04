@@ -18,16 +18,23 @@ class LoginController extends Controller
     {
 
         $credentials = $request->only('email', 'password');
-        
+
         if (Auth::attempt($credentials)) {
-            // La autenticación ha sido exitosa
             return redirect()->intended('/contratos');
         }
-        
-        // La autenticación ha fallado
+
         return redirect()->back()->withErrors([
             'email' => 'Las credenciales no son correctas.',
         ]);
     }
-}
 
+    public function logout(Request $request)
+    {
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
+}

@@ -23,3 +23,4 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 
 Route::get('/contratos', 'App\Http\Controllers\ContratoController@index');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
